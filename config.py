@@ -1,27 +1,29 @@
 """
 Configuration du bot Telegram de prédiction Baccarat
+Variables configurées pour Render.com
 """
 import os
 
-def parse_channel_id(env_var: str, default: str) -> int:
-    value = os.getenv(env_var) or default
-    channel_id = int(value)
-    if channel_id > 0 and len(str(channel_id)) >= 10:
-        channel_id = -channel_id
-    return channel_id
+# ==================== CONFIGURATION OBLIGATOIRE ====================
+# Ces valeurs sont configurées directement pour le déploiement Render.com
 
-SOURCE_CHANNEL_ID = parse_channel_id('SOURCE_CHANNEL_ID', '-1002682552255')
+API_ID = 29177661
+API_HASH = "a8639172fa8d35dbfd8ea46286d349ab"
+BOT_TOKEN = "8131011456:AAGPWIFCfQoGuSlL-GcAw2s96rLbOn5I_c0"
+ADMIN_ID = 1190237801
 
-PREDICTION_CHANNEL_ID = parse_channel_id('PREDICTION_CHANNEL_ID', '-1002338377421')
+# IDs des canaux Telegram
+SOURCE_CHANNEL_ID = -1002682552255      # Canal source Baccarat
+PREDICTION_CHANNEL_ID = -1003853896752  # Canal de prédiction
 
-ADMIN_ID = int(os.getenv('ADMIN_ID') or '0')
+# Port pour Render.com (obligatoire)
+PORT = 10000
 
-API_ID = int(os.getenv('API_ID') or '0')
-API_HASH = os.getenv('API_HASH') or ''
-BOT_TOKEN = os.getenv('BOT_TOKEN') or ''
+# ==================== CONFIGURATION PRÉDICTION ====================
+# Offset pour la prédiction (défaut: 2) - N + a
+PREDICTION_OFFSET = int(os.getenv('PREDICTION_OFFSET', '2'))
 
-PORT = int(os.getenv('PORT') or '5000')  # Port 5000 for Replit
-
+# ==================== MAPPING DES COULEURS ====================
 SUIT_MAPPING = {
     '♠️': '❤️',
     '♠': '❤️',
@@ -36,9 +38,23 @@ SUIT_MAPPING = {
 }
 
 ALL_SUITS = ['♠', '♥', '♦', '♣']
+
 SUIT_DISPLAY = {
     '♠': '♠️',
     '♥': '❤️',
     '♦': '♦️',
     '♣': '♣️'
+}
+
+# Noms complets des couleurs pour l'affichage
+SUIT_NAMES = {
+    '♠': 'Pique',
+    '♠️': 'Pique',
+    '♥': 'Cœur',
+    '❤️': 'Cœur',
+    '♥️': 'Cœur',
+    '♦': 'Carreau',
+    '♦️': 'Carreau',
+    '♣': 'Trèfle',
+    '♣️': 'Trèfle'
 }
